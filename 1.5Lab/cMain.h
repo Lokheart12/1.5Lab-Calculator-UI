@@ -1,0 +1,45 @@
+#pragma once
+#include "wx/wx.h"
+
+class cMain : public wxFrame
+{
+public:
+	cMain();
+	~cMain();
+public:
+	//int buttonCountX = 4; //number of buttons on the calc
+	//int buttonCountY = 5;
+	//wxButton **btn; //button array
+
+	//calculator buttons
+	wxTextCtrl *m_txt1 = nullptr;
+	wxButton* btn1;
+	wxButton* btn2;
+	wxButton* btn3;
+	wxButton* btn4;
+	wxButton* btn5;
+	wxButton* btn6;
+	wxButton* btn7;
+	wxButton* btn8;
+	wxButton* btn9;
+	wxButton* btn0;
+	wxButton* btnNegative;
+	wxButton* btnBin;
+	wxButton* btnHex;
+	wxButton* btnDec;
+	wxButton* btnMult;
+	wxButton* btnDiv;
+	wxButton* btnAdd;
+	wxButton* btnSub;
+	wxButton* btnClear;
+	wxButton* btnMod;
+	wxButton* equalsBtn;
+
+
+	bool bFirstClick = true;
+
+	void onButtonClicked(wxCommandEvent& evt);
+
+	wxDECLARE_EVENT_TABLE();
+};
+
