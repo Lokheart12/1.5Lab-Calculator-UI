@@ -1,5 +1,6 @@
 #include "cMain.h"
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
+	EVT_BUTTON(wxID_ANY,onButtonClicked)
 wxEND_EVENT_TABLE()
 
 //I left in the code for how to make the array, but the buttons didn't turn out the way I wanted to
@@ -7,7 +8,7 @@ wxEND_EVENT_TABLE()
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSize(800, 600))
 {
 	//text box and button array
-	m_txt1 = new wxTextCtrl(this, wxID_ANY, "numberField", wxPoint(10, 0), wxSize(150, 30));
+	m_txt1 = new wxListBox(this, wxID_ANY, wxPoint(10, 0), wxSize(150, 30));
 
 	wxButton* btnNegative = new wxButton(this, 30, "-x", wxPoint(10, 40), wxSize(30, 30));
 	wxButton* btnBin = new wxButton(this, 31, "Bin", wxPoint(50, 40), wxSize(30, 30));
@@ -30,7 +31,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSi
 	wxButton* btnAdd = new wxButton(this, 36, "+", wxPoint(130, 160), wxSize(30, 30));
 
 	wxButton* btnMod = new wxButton(this, 37, "%", wxPoint(10, 200), wxSize(30, 30));
-	wxButton* btn0 = new wxButton(this, 0, "0", wxPoint(50, 200), wxSize(30, 30));
+	wxButton* btn0 = new wxButton(this, 41, "0", wxPoint(50, 200), wxSize(30, 30));
 	wxButton* btnClear = new wxButton(this, 38, "C", wxPoint(90, 200), wxSize(30, 30));
 	wxButton* btnSub = new wxButton(this, 39, "-", wxPoint(130, 200), wxSize(30, 30));
 
@@ -77,6 +78,24 @@ cMain::~cMain()
 }
 
 void cMain::onButtonClicked(wxCommandEvent& evt)
+//void cMain::onButtonClicked(wxCommandEvent& evt, wxButton* btnToHandle)
 {
+	int number = evt.GetId();
+	switch (number)
+	{
+	case 41:
+		m_txt1->Append("0");
+		break;
+	case 1:
+		m_txt1->Append("1");
+		//m_txt1->SetString();
+		break;
+	case 2:
+		m_txt1->Append("2");
+		break;
+	default:
+		break;
+	}
+
 	evt.Skip();
 }
