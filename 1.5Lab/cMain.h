@@ -35,6 +35,7 @@ public:
 	wxButton* btnMod;
 	wxButton* equalsBtn;
 
+	std::string toCalculate;
 
 
 	void onButtonClicked(wxCommandEvent& evt);
