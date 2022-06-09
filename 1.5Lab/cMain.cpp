@@ -23,7 +23,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSi
 	wxButton* btn4 = new wxButton(this, 4, "4", wxPoint(10, 120), wxSize(30, 30));
 	wxButton* btn5 = new wxButton(this, 5, "5", wxPoint(50, 120), wxSize(30, 30));
 	wxButton* btn6 = new wxButton(this, 6, "6", wxPoint(90, 120), wxSize(30, 30));
-	wxButton* btnDiv = new wxButton(this, 35, "%", wxPoint(130, 120), wxSize(30, 30));
+	wxButton* btnDiv = new wxButton(this, 35, "/", wxPoint(130, 120), wxSize(30, 30));
 
 	wxButton* btn7 = new wxButton(this, 7, "7", wxPoint(10, 160), wxSize(30, 30));
 	wxButton* btn8 = new wxButton(this, 8, "8", wxPoint(50, 160), wxSize(30, 30));
@@ -83,7 +83,7 @@ void cMain::onButtonClicked(wxCommandEvent& evt)
 	int number = evt.GetId();
 	switch (number)
 	{
-	case 41:
+	case 41://0 button
 		m_txt1->Append("0");
 		break;
 	case 1:
@@ -92,6 +92,60 @@ void cMain::onButtonClicked(wxCommandEvent& evt)
 		break;
 	case 2:
 		m_txt1->Append("2");
+		break;
+	case 3:
+		m_txt1->Append("3");
+		break;
+	case 4:
+		m_txt1->Append("4");
+		break;
+	case 5:
+		m_txt1->Append("5");
+		break;
+	case 6:
+		m_txt1->Append("6");
+		break;
+	case 7:
+		m_txt1->Append("7");
+		break;
+	case 8:
+		m_txt1->Append("8");
+		break;
+	case 9:
+		m_txt1->Append("9");
+		break;
+	case 30:
+		m_txt1->Append("-");
+		break;
+	case 31:
+		m_txt1->Append("Bin Activated");
+		break;
+	case 32:
+		m_txt1->Append("Hex Activated");
+		break;
+	case 33:
+		m_txt1->Append("Dec Activated");
+		break;
+	case 34:
+		m_txt1->Append("*");
+		break;
+	case 35:
+		m_txt1->Append("/");
+		break;
+	case 36:
+		m_txt1->Append("+");
+		break;
+	case 37:
+		m_txt1->Append("%");
+		break;
+	case 38:
+		m_txt1->Clear();
+		break;
+	case 39:
+		m_txt1->Append("-");
+		break;
+	case 40:
+		m_txt1->Append("=");
 		break;
 	default:
 		break;
