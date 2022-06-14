@@ -1,5 +1,6 @@
 #include "cMain.h"
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
+	EVT_BUTTON(wxID_ANY,onButtonClicked)
 wxEND_EVENT_TABLE()
 
 //I left in the code for how to make the array, but the buttons didn't turn out the way I wanted to
@@ -7,7 +8,7 @@ wxEND_EVENT_TABLE()
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSize(800, 600))
 {
 	//text box and button array
-	m_txt1 = new wxTextCtrl(this, wxID_ANY, "numberField", wxPoint(10, 0), wxSize(150, 30));
+	m_txt1 = new wxListBox(this, wxID_ANY, wxPoint(10, 0), wxSize(150, 40));
 
 	wxButton* btnNegative = new wxButton(this, 30, "-x", wxPoint(10, 40), wxSize(30, 30));
 	wxButton* btnBin = new wxButton(this, 31, "Bin", wxPoint(50, 40), wxSize(30, 30));
@@ -22,7 +23,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSi
 	wxButton* btn4 = new wxButton(this, 4, "4", wxPoint(10, 120), wxSize(30, 30));
 	wxButton* btn5 = new wxButton(this, 5, "5", wxPoint(50, 120), wxSize(30, 30));
 	wxButton* btn6 = new wxButton(this, 6, "6", wxPoint(90, 120), wxSize(30, 30));
-	wxButton* btnDiv = new wxButton(this, 35, "%", wxPoint(130, 120), wxSize(30, 30));
+	wxButton* btnDiv = new wxButton(this, 35, "/", wxPoint(130, 120), wxSize(30, 30));
 
 	wxButton* btn7 = new wxButton(this, 7, "7", wxPoint(10, 160), wxSize(30, 30));
 	wxButton* btn8 = new wxButton(this, 8, "8", wxPoint(50, 160), wxSize(30, 30));
@@ -30,11 +31,12 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Calculator!", wxPoint(30, 30), wxSi
 	wxButton* btnAdd = new wxButton(this, 36, "+", wxPoint(130, 160), wxSize(30, 30));
 
 	wxButton* btnMod = new wxButton(this, 37, "%", wxPoint(10, 200), wxSize(30, 30));
-	wxButton* btn0 = new wxButton(this, 0, "0", wxPoint(50, 200), wxSize(30, 30));
+	wxButton* btn0 = new wxButton(this, 41, "0", wxPoint(50, 200), wxSize(30, 30));
 	wxButton* btnClear = new wxButton(this, 38, "C", wxPoint(90, 200), wxSize(30, 30));
 	wxButton* btnSub = new wxButton(this, 39, "-", wxPoint(130, 200), wxSize(30, 30));
 
 	wxButton* equalsBtn = new wxButton(this, 40, "=", wxPoint(90, 240), wxSize(70, 30));
+	
 	//btn = new wxButton*[buttonCountX, buttonCountY];
 	//int buttonPlacementX = 10;
 	//int buttonPlacementY = 40;
@@ -77,6 +79,97 @@ cMain::~cMain()
 }
 
 void cMain::onButtonClicked(wxCommandEvent& evt)
+//void cMain::onButtonClicked(wxCommandEvent& evt, wxButton* btnToHandle)
 {
+	int number = evt.GetId();
+	switch (number)
+	{
+	case 41://0 button
+		m_txt1->Append("0");
+		toCalculate.append("0");
+		break;
+	case 1:
+		m_txt1->Append("1");
+		toCalculate.append("1");
+		break;
+	case 2:
+		m_txt1->Append("2");
+		toCalculate.append("2");
+		break;
+	case 3:
+		m_txt1->Append("3");
+		toCalculate.append("3");
+		break;
+	case 4:
+		m_txt1->Append("4");
+		toCalculate.append("4");
+		break;
+	case 5:
+		m_txt1->Append("5");
+		toCalculate.append("5");
+		break;
+	case 6:
+		m_txt1->Append("6");
+		toCalculate.append("6");
+		break;
+	case 7:
+		m_txt1->Append("7");
+		toCalculate.append("7");
+		break;
+	case 8:
+		m_txt1->Append("8");
+		toCalculate.append("8");
+		break;
+	case 9:
+		m_txt1->Append("9");
+		toCalculate.append("9");
+		break;
+	case 30://negative
+		m_txt1->Append("-");
+		toCalculate.append("--");//double minus to show that an item is negative in calc
+		break;
+	case 31:
+		m_txt1->Append("Bin Activated");
+		break;
+	case 32:
+		m_txt1->Append("Hex Activated");
+		break;
+	case 33:
+		m_txt1->Append("Dec Activated");
+		break;
+	case 34:
+		m_txt1->Append("*");
+		toCalculate.append("*");
+		break;
+	case 35:
+		m_txt1->Append("/");
+		toCalculate.append("/");
+		break;
+	case 36:
+		m_txt1->Append("+");
+		toCalculate.append("+");
+		break;
+	case 37:
+		m_txt1->Append("%");
+		toCalculate.append("%");
+		break;
+	case 38:
+		m_txt1->Clear();
+		toCalculate = "";
+		break;
+	case 39:
+		m_txt1->Append("-");
+		toCalculate.append("-");
+		break;
+	case 40:
+		//m_txt1->Append("=");
+		m_txt1->Clear();
+		toCalculate.append("=");
+		m_txt1->Append(toCalculate);
+		break;
+	default:
+		break;
+	}
+
 	evt.Skip();
 }
