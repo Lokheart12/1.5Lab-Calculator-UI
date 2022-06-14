@@ -12,7 +12,7 @@ public:
 	//wxButton **btn; //button array
 
 	//calculator buttons
-	wxListBox *m_txt1 = nullptr;
+	wxTextCtrl *m_txt1 = nullptr;
 	wxButton* btn1;
 	wxButton* btn2;
 	wxButton* btn3;
@@ -35,11 +35,11 @@ public:
 	wxButton* btnMod;
 	wxButton* equalsBtn;
 
-	std::string toCalculate;
 
+	bool bFirstClick = true;
 
 	void onButtonClicked(wxCommandEvent& evt);
-	//void onButtonClicked(wxCommandEvent& evt, wxButton* btnToHandle);
+
 	wxDECLARE_EVENT_TABLE();
 };
 
