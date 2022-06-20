@@ -37,11 +37,10 @@ public:
 	wxButton* equalsBtn;
 
 	std::string toCalculate;
-	double prevAnswer;
+
 
 	void onButtonClicked(wxCommandEvent& evt);
 	//void onButtonClicked(wxCommandEvent& evt, wxButton* btnToHandle);
 	wxDECLARE_EVENT_TABLE();
 };
-
 
