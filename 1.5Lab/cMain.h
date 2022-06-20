@@ -10,6 +10,7 @@ public:
 	//int buttonCountX = 4; //number of buttons on the calc
 	//int buttonCountY = 5;
 	//wxButton **btn; //button array
+	//wxFrame frame1;
 
 	//calculator buttons
 	wxListBox *m_txt1 = nullptr;
