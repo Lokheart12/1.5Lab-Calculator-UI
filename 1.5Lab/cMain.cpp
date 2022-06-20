@@ -1,13 +1,20 @@
 #include "cMain.h"
 #include "ButtonFactory.h"
+#include "Processor.h"
+#include <string>
+#include <iostream>
+#include <vector>
+
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(wxID_ANY, onButtonClicked)
 wxEND_EVENT_TABLE()
+
 //I left in the code for how to make the array, but the buttons didn't turn out the way I wanted to
 //so I manually did them all
 //wxWindow* window = new wxWindow();
 cMain::cMain() : wxFrame(nullptr, 451, "Calculator!", wxPoint(30, 30), wxSize(800, 600))
 {
+	double prevAnswer = 0; //this is so I can convert the last thing into bin ect.
 	//creating the frame
 	//wxFrame* frame1 = new wxFrame(nullptr, 451, "Calculator!", wxPoint(30, 30), wxSize(800, 600));
 
@@ -15,8 +22,8 @@ cMain::cMain() : wxFrame(nullptr, 451, "Calculator!", wxPoint(30, 30), wxSize(80
 	ButtonFactory* factory1 = new ButtonFactory(this);
 
 	//text box and button array
-	m_txt1 = new wxListBox(this, wxID_ANY, wxPoint(10, 0), wxSize(150, 40));
-
+	m_txt1 = new wxListBox(this, wxID_ANY, wxPoint(10, 0), wxSize(500, 40));
+	m_txt1->Append("For now this only takes 2 numbers and 1 operand");
 	wxButton* btnNegative = factory1->CreateButtonNegative();//new wxButton(this, 30, "-x", wxPoint(10, 40), wxSize(30, 30));
 	wxButton* btnBin = factory1->CreateButtonBin();//new wxButton(this, 31, "Bin", wxPoint(50, 40), wxSize(30, 30));
 	wxButton* btnHex = factory1->CreateButtonHex();// new wxButton(this, 32, "Hex", wxPoint(90, 40), wxSize(30, 30));
@@ -88,12 +95,27 @@ cMain::~cMain()
 void cMain::onButtonClicked(wxCommandEvent& evt)
 //void cMain::onButtonClicked(wxCommandEvent& evt, wxButton* btnToHandle)
 {
+	Processor* processor = Processor::getInstance(); //calling the singleton
 	int number = evt.GetId();
+	double answer = 0;
+
+
+	std::string convertedNumber = "";
+	std::string temp = "";//gotta have this for converting my int at the end
+
 	switch (number)
 	{
 	case 41://0 button
 		m_txt1->Append("0");
 		toCalculate.append("0");
+
+
+		////this part tests my processor. Can delete after testing is done
+		//processor->setBaseNumber(198);
+		//m_txt1->Append(processor->getDecimal());
+		//m_txt1->Append(processor->getBianary());
+		//m_txt1->Append(processor->getHexadecimal());
+
 		break;
 	case 1:
 		m_txt1->Append("1");
@@ -135,14 +157,21 @@ void cMain::onButtonClicked(wxCommandEvent& evt)
 		m_txt1->Append("-");
 		toCalculate.append("--");//double minus to show that an item is negative in calc
 		break;
-	case 31:
-		m_txt1->Append("Bin Activated");
+	case 31://bianary
+		processor->setBaseNumber(prevAnswer);
+		convertedNumber = processor->getBianary();
+		m_txt1->Append(convertedNumber);
 		break;
-	case 32:
-		m_txt1->Append("Hex Activated");
+	case 32://hexadecimal
+		processor->setBaseNumber(prevAnswer);
+		convertedNumber = processor->getHexadecimal();
+		m_txt1->Append(convertedNumber);
 		break;
-	case 33:
-		m_txt1->Append("Dec Activated");
+	case 33://decimal
+		processor->setBaseNumber(prevAnswer);
+		convertedNumber = processor->getDecimal();
+		m_txt1->Append(convertedNumber);
+
 		break;
 	case 34:
 		m_txt1->Append("*");
@@ -172,11 +201,32 @@ void cMain::onButtonClicked(wxCommandEvent& evt)
 		//m_txt1->Append("=");
 		m_txt1->Clear();
 		toCalculate.append("=");
+		//m_txt1->Append(toCalculate);
+
+		answer = processor->doMath(toCalculate);
+		//this part doesn't work
+		if (answer == 1.5)//if doMath doesn't find the right operand, it sends this decimal
+		{
+			m_txt1->Append("Something didn't work. You probably didn't put in an operator");
+			break;
+		}
+		temp = std::to_string(answer);//got to add this
+		toCalculate.append(temp);
 		m_txt1->Append(toCalculate);
+		toCalculate = "";
+		prevAnswer = answer;
+		answer = 0;
+
+
+
+
 		break;
 	default:
+		
 		break;
 	}
+	
+
 
 	evt.Skip();
 }

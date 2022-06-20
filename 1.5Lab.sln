@@ -5,6 +5,11 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1.5Lab", "1.5Lab\1.5Lab.vcxproj", "{C5C9B283-117C-4787-8ABB-186A516C4BD1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A0FAD0A-ED50-4C85-8561-EF0ABD003D6A}"
+	ProjectSection(SolutionItems) = preProject
+		1.5Lab\Processor.cpp = 1.5Lab\Processor.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
