@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "IBaseCommand.h"
 
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(wxID_ANY, onButtonClicked)
@@ -203,14 +204,23 @@ void cMain::onButtonClicked(wxCommandEvent& evt)
 		toCalculate.append("=");
 		//m_txt1->Append(toCalculate);
 
-		answer = processor->doMath(toCalculate);
-		//this part doesn't work
+		answer = processor->doMath(toCalculate); //original calculation
+
+		//processor->commands.push_back(processor); //trying to do the weird command queue that doesn't make sense for this 
+		//for (int i = 0; i < processor->commands.size(); i++)
+		//{
+		//	processor->commands[i]->Execute(toCalculate);
+		//}
+
+		//answer = processor->Execute(toCalculate); //decided to just run the excecute function since the other thing doesn't work and doesn't make a lot of sense
+
+
 		if (answer == 1.5)//if doMath doesn't find the right operand, it sends this decimal
 		{
 			m_txt1->Append("Something didn't work. You probably didn't put in an operator");
 			break;
 		}
-		temp = std::to_string(answer);//got to add this
+		temp = std::to_string(answer);//got to add this to output the right answer
 		toCalculate.append(temp);
 		m_txt1->Append(toCalculate);
 		toCalculate = "";

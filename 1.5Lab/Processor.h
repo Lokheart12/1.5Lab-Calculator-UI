@@ -1,7 +1,14 @@
 #pragma once
 #include "cMain.h"
 #include <cstring>
-class Processor
+#include "IBaseCommand.h"
+#include <vector>
+#include "Mod.h"
+#include "Divide.h"
+#include "Multiply.h"
+#include "Add.h"
+#include "Subtract.h"
+class Processor //: public IBaseCommand
 {
 private:
 	Processor()//empty constructor because we don't want anyone to use this
@@ -11,6 +18,18 @@ private:
 	int baseNumber = 0;
 
 public:
+	std::vector<IBaseCommand*> commands;
+	Mod modu;
+	Divide div;
+	Multiply mult;
+	Subtract sub;
+	Add ad;
+
+	//double Execute(std::string inputNum)
+	//{
+	//	return doMath(inputNum);
+	//}
+
 	static Processor* getInstance()
 	{
 		if (calc == nullptr)
@@ -133,6 +152,7 @@ public:
 			else if (calculate[i] == '%')
 			{
 				operand = "%";
+				
 			}
 
 
@@ -149,26 +169,46 @@ public:
 
 		if (operand == "+")
 		{
-			answer = num1 + num2;
+			//answer = num1 + num2; 
+			ad.numFirst = num1;
+			ad.numSecond = num2;
+			commands.push_back(&ad);
+			
 		}
 		else if (operand == "-")
 		{
-			answer = num1 - num2;
+			//answer = num1 - num2;
+			sub.numFirst = num1;
+			sub.numSecond = num2;
+			commands.push_back(&sub);
 		}
 		else if (operand == "*")
 		{
-			answer = num1 * num2;
+			//answer = num1 * num2;
+			mult.numFirst = num1;
+			mult.numSecond = num2;
+			commands.push_back(&mult);
 		}
 		else if (operand == "/")
 		{
-			answer = num1 / num2;
+			//answer = num1 / num2;
+			div.numFirst = num1;
+			div.numSecond = num2;
+			commands.push_back(&div);
 		}
 		else if (operand == "%")
 		{
-			answer = num1 % num2;
+			//answer = num1 % num2;
+			modu.numFirst = num1;
+			modu.numSecond = num2;
+			commands.push_back(&modu);
+		}
+		for (int i = 0; i < commands.size(); i++)//implemented the base command, though in this iteration the vector will always be size 1
+		{
+			answer = commands[i]->Execute(num1, num2);
 		}
 
-
+		commands.clear();
 		return answer;
 	}
 };

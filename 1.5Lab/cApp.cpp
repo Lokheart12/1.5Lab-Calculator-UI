@@ -1,4 +1,5 @@
 #include "cApp.h"
+#include "IBaseCommand.h"
 wxIMPLEMENT_APP(cApp);
 
 cApp::cApp()

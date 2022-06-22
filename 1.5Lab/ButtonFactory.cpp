@@ -2,6 +2,7 @@
 #include "cMain.h"
 #include "wx/wx.h"
 #include "cApp.h"
+#include "IBaseCommand.h"
 
 ButtonFactory::ButtonFactory()
 {

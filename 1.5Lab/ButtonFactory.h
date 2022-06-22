@@ -1,5 +1,6 @@
 #pragma once
 #include "cMain.h"
+#include "IBaseCommand.h"
 
 //if you don't pass in the frame it won't work
 class ButtonFactory
