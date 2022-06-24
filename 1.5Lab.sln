@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		1.5Lab\Processor.cpp = 1.5Lab\Processor.cpp
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalculatorUnitTest", "CalculatorUnitTest\CalculatorUnitTest.vcxproj", "{63682898-0CB8-4C7D-B174-9A405C6C4452}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -26,6 +28,14 @@ Global
 		{C5C9B283-117C-4787-8ABB-186A516C4BD1}.Release|x64.Build.0 = Release|x64
 		{C5C9B283-117C-4787-8ABB-186A516C4BD1}.Release|x86.ActiveCfg = Release|Win32
 		{C5C9B283-117C-4787-8ABB-186A516C4BD1}.Release|x86.Build.0 = Release|Win32
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Debug|x64.ActiveCfg = Debug|x64
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Debug|x64.Build.0 = Debug|x64
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Debug|x86.ActiveCfg = Debug|Win32
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Debug|x86.Build.0 = Debug|Win32
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Release|x64.ActiveCfg = Release|x64
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Release|x64.Build.0 = Release|x64
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Release|x86.ActiveCfg = Release|Win32
+		{63682898-0CB8-4C7D-B174-9A405C6C4452}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
